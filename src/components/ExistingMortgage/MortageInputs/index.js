@@ -3,9 +3,8 @@ import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import {withStyles} from '@material-ui/core/styles';
 import {setFormValue} from './actions';
-import styles from './withStyles.js';
-
 import MonthlyPayment from '../MonthlyPayment';
+import styles from './withStyles.js';
 
 class MortageInputs extends React.Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class MortageInputs extends React.Component {
 
   render() {
     const {classes} = this.props;
-    let {apr, extra, loanAmount, term} = this.props.mortage;
+    let {apr, remainingPrincipal, loanAmount, term} = this.props.mortage;
     return (
       <form onSubmit={null} className={classes.mortgageInputs}>
         <TextField
@@ -62,14 +61,14 @@ class MortageInputs extends React.Component {
           value={term}
         />
         <TextField
-          className={`${classes.input} ${classes.extra}`}
-          id="extra"
-          label="Extra Payment Per Month"
+          className={`${classes.input} ${classes.remainingPrincipal}`}
+          id="remainingPrincipal"
+          label="Remaining Principal"
           margin="normal"
-          name="extra"
+          name="remainingPrincipal"
           onChange={this.handleChange}
           type="number"
-          value={extra}
+          value={remainingPrincipal}
         />
         <MonthlyPayment />
       </form>
@@ -79,7 +78,7 @@ class MortageInputs extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    mortage: state.mortgage
+    mortage: state.existingMortgage
   }
 }
 

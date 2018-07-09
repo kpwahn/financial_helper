@@ -3,11 +3,11 @@ import calcMonthlyPayment from './calcMonthlyPayment';
 import amortify from './amortify';
 
 let DEFAULT_STATE = {
-  apr: localStorage.getItem('newMortgage/amortization/apr') || 5.0,
-  extra: localStorage.getItem('newMortgage/amortization/extra') || 0,
-  loanAmount: localStorage.getItem('newMortgage/amortization/loanAmount') || 300000,
+  apr: localStorage.getItem('existingMortgage/amortization/apr') || 5.0,
+  remainingPrincipal: localStorage.getItem('existingMortgage/amortization/remainingPrincipal') || 300000,
+  loanAmount: localStorage.getItem('existingMortgage/amortization/loanAmount') || 300000,
   monthsSaved: 0,
-  term: localStorage.getItem('newMortgage/amortization/term') || 30, // in years
+  term: localStorage.getItem('existingMortgage/amortization/term') || 30, // in years
   yearsSaved: 0
 }
 
@@ -26,8 +26,8 @@ DEFAULT_STATE = {
   totalInterestSaved
 }
 
-export default handleAction('SET_FORM_VALUE', (state, action) => {
-    localStorage.setItem(`newMortgage/amortization/${action.payload.name}`, action.payload.value);
+export default handleAction('SET_FORM_VALUE_EXISTING_MORTGAGE', (state, action) => {
+    localStorage.setItem(`existingMortgage/amortization/${action.payload.name}`, action.payload.value);
 
     let newState = {
       ...state,

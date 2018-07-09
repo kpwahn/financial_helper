@@ -24,5 +24,8 @@ module.exports = {
   // Remove this for info about perforamce(i.e bundle size)
   performance : {
     hints : false
+  },
+  watchOptions: {
+    poll: true
   }
 }
